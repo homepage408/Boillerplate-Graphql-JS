@@ -1,0 +1,59 @@
+{
+  "name": "boillerplate-graphql-js",
+  "version": "1.0.0",
+  "description": "### Installation",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm start",
+    "start": "nodemon src/worker/entrypoint.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/homepage408/Boillerplate-Graphql-JS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/homepage408/Boillerplate-Graphql-JS/issues"
+  },
+  "homepage": "https://github.com/homepage408/Boillerplate-Graphql-JS#readme",
+  "dependencies": {
+    "@babel/core": "^7.16.7",
+    "@babel/register": "^7.16.7",
+    "@graphql-tools/graphql-file-loader": "^7.3.3",
+    "@graphql-tools/load": "^7.5.0",
+    "@graphql-tools/load-files": "^6.0.15",
+    "@graphql-tools/merge": "^6.0.15",
+    "@graphql-tools/schema": "^8.3.1",
+    "apollo-boost": "^0.4.9",
+    "apollo-server": "^3.6.1",
+    "apollo-server-express": "^3.6.1",
+    "apollo-tracing": "^0.15.0",
+    "body-parser": "^1.19.1",
+    "core-js": "^3.20.1",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.1.1",
+    "dotenv": "^10.0.0",
+    "env-cmd": "^10.1.0",
+    "express": "^4.17.2",
+    "graphql": "^16.2.0",
+    "graphql-iso-date": "^3.6.1",
+    "graphql-resolvers": "^0.4.2",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "nodemon": "^2.0.15",
+    "pg": "^8.7.1",
+    "sequelize": "^6.12.4",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.5.4",
+    "util": "^0.12.4",
+    "uuid": "^8.3.2",
+    "webdev": "0.0.20"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.16.7",
+    "@babel/plugin-proposal-object-rest-spread": "^7.16.7",
+    "@babel/preset-env": "^7.16.7"
+  }
+}
