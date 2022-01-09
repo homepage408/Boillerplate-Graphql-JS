@@ -6,4 +6,4 @@ const typeDefs = loadSchemaSync(".",{
 })
 
 
-module.exports = typeDefs
+export default typeDefs

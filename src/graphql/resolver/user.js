@@ -1,6 +1,7 @@
 import { models } from '../models'
 import * as PasswordService from '../../services/password-service'
 import * as JWT from '../common/jsonWebToken'
+import Pagination from '../../services/pagination-service'
 
 
 export const signUpUsers = async (_, { signUpInput }, ___) => {
@@ -30,21 +31,24 @@ export const login = async (_, { email, password }, __) => {
 
     const token = await JWT.jwtToken(existingUser)
 
-    return { token: token, user: existingUser }
+    return { __typename: "token", token: token, user: existingUser }
 }
 
 
 
-export const getAllUser = async (_, __, ___) => {
-    const data = [{
-        name: "Teguh",
-        password: "password"
-    }, {
-        name: "Teguh Setiawan",
-        password: "password"
-    }]
+export const getAllUser = async (_, { paginationInput }, ___) => {
+    let options = {}
+    const paginationService = paginationInput ? new Pagination(paginationInput) : null
+    const limitOffset = paginationService ? paginationService.limitOffset() : null
 
-    return { __typename: "getNameOK", data }
+    if (limitOffset) {
+        const { limit, offset } = paginationService.limitOffset()
+        options.limit = limit
+        options.offset = offset
+    }
+
+    const { rows: users, count } = await models.Users.findAndCountAll(options)
+    return { __typename: "getNameOK", data: users, paginationRes: paginationService ? paginationService.paginationRes(count) : null }
 }
 
 export default {
