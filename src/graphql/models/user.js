@@ -35,6 +35,9 @@ Users.init(
         },
         isActive: {
             type: DataTypes.BOOLEAN
+        },
+        imageProfileUrl: {
+            type: DataTypes.STRING
         }
     },
     {

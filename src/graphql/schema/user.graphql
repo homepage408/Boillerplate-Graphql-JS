@@ -21,10 +21,18 @@ type token {
   error: Error
 }
 
+type getNameOK {
+  data: [User]
+  paginationRes: PaginationRes
+}
+
+union getNameRes = getNameOK | Error
+union loginRes = token | Error
 union signUpRes = signupOK | Error
 
 type Query {
-  login(email: String, password: String): token
+  getAllUser(paginationInput: PaginationInput): getNameRes
+  login(email: String, password: String): loginRes
 }
 
 type Mutation {

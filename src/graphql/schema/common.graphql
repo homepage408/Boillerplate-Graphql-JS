@@ -1,4 +1,17 @@
+scalar ImageFile
+
 type Error {
   status: Int
   message: String
+}
+
+input PaginationInput {
+  page: Int
+  size: Int
+}
+
+type PaginationRes {
+  totalItems: Int!
+  totalPages: Int!
+  currentPages : Int!
 }
