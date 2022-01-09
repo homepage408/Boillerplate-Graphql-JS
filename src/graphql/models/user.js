@@ -1,5 +1,6 @@
 import { DataTypes, Model } from 'sequelize'
 import { sequelize } from '../../config/sequelize'
+import { UserRole } from '../enum'
 
 export class Users extends Model { }
 
@@ -21,6 +22,7 @@ Users.init(
         },
         role: {
             type: DataTypes.STRING,
+            defaultValue: UserRole.ENDUSER
         },
         createdAt: {
             type: DataTypes.DATE,
@@ -28,8 +30,11 @@ Users.init(
         updatedAt: {
             type: DataTypes.DATE,
         },
-        deleteAt: {
+        deletedAt: {
             type: DataTypes.DATE
+        },
+        isActive: {
+            type: DataTypes.BOOLEAN
         }
     },
     {

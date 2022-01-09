@@ -1,0 +1,4 @@
+type Error {
+  status: Int
+  message: String
+}
