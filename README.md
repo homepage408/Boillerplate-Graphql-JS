@@ -1,5 +1,5 @@
 # Grapqhl with Express 
-
+## Apollo Studio
 ### Installation
 
 The project requires [Node.js](https://nodejs.org/) v12 to run.
