@@ -1,0 +1,32 @@
+type User {
+  id: Int
+  name: String
+  email: String
+  role: String
+}
+
+input SignUpInput {
+  name: String
+  email: String
+  password: String
+}
+
+type signupOK {
+  user: User
+}
+
+type token {
+  token: String
+  user: User
+  error: Error
+}
+
+union signUpRes = signupOK | Error
+
+type Query {
+  login(email: String, password: String): token
+}
+
+type Mutation {
+  signUpUsers(signUpInput: SignUpInput): signUpRes
+}
