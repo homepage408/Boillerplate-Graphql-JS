@@ -10,6 +10,7 @@ import express from 'express'
 import path from 'path'
 import jwt from 'jsonwebtoken'
 import http from 'http'
+const port = process.env.PORT || 5000
 
 app.use(express.static("public"));
 app.set("views", path.join(__dirname, "../views"));
@@ -99,7 +100,7 @@ io.on('connection', (socket) => {
 })
 
 
-httpServer.listen({ port: process.env.PORT }, async () => {
+httpServer.listen( port , async () => {
     console.log('\n\n🚀  Server ready at http://localhost:' + process.env.PORT)
     console.log('🚀  GraphQL ready at http://localhost:' + process.env.PORT + '/graphql')
 })
