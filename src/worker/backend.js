@@ -15,16 +15,16 @@ app.use(express.static("public"));
 app.set("views", path.join(__dirname, "../views"));
 app.set("view engine", "ejs");
 
-// app.get('/', function (req, res) {
-//     res.status(200)
-//     res.send({ status: 200, message: 'WELCOME' })
-// })
+app.get('/', function (req, res) {
+    res.status(200)
+    res.send({ status: 200, message: 'WELCOME' })
+})
 
-app.get('/', (req, res) => {
-    res.redirect(`/${uuidv4()}`);
+app.get('/videocall/getRoom', (req, res) => {
+    res.redirect(`/videocall/${uuidv4()}`);
 });
 
-app.get('/:room', function (req, res) {
+app.get('/videocall/:room', function (req, res) {
     // NEW CODE
     res.render('room', { roomId: req.params.room });
 })
@@ -83,10 +83,7 @@ async function startServer() {
 }
 
 startServer()
-
 const httpServer = http.createServer(app)
-
-
 const peerServer = ExpressPeerServer(httpServer, {
     debug: true
 })
