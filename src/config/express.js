@@ -1,12 +1,10 @@
 import express from 'express';
 import cors from 'cors';
-import { makeExecutableSchema } from '@graphql-tools/schema'
 import bodyParser from 'body-parser';
 
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
-
 app.use(bodyParser.json({ limit: '3mb' }));
 
 app.use(cors());
