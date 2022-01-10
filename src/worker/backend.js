@@ -4,12 +4,29 @@ import app from '../config/express'
 import { resolvers, schema as typeDefs, models } from '../graphql'
 import { ApolloError, ApolloServer, AuthenticationError } from 'apollo-server-express'
 import { makeExecutableSchema } from '@graphql-tools/schema'
+import { v4 as uuidv4 } from 'uuid'
+import { ExpressPeerServer } from 'peer'
+import express from 'express'
+import path from 'path'
 import jwt from 'jsonwebtoken'
 import http from 'http'
 
-app.get('/', function (req, res) {
-    res.status(200)
-    res.send({ status: 200, message: 'WELCOME' })
+app.use(express.static("public"));
+app.set("views", path.join(__dirname, "../views"));
+app.set("view engine", "ejs");
+
+// app.get('/', function (req, res) {
+//     res.status(200)
+//     res.send({ status: 200, message: 'WELCOME' })
+// })
+
+app.get('/', (req, res) => {
+    res.redirect(`/${uuidv4()}`);
+});
+
+app.get('/:room', function (req, res) {
+    // NEW CODE
+    res.render('room', { roomId: req.params.room });
 })
 
 
@@ -68,6 +85,22 @@ async function startServer() {
 startServer()
 
 const httpServer = http.createServer(app)
+
+
+const peerServer = ExpressPeerServer(httpServer, {
+    debug: true
+})
+
+app.use("/peerjs", peerServer)
+const io = require('socket.io')(httpServer)
+
+io.on('connection', (socket) => {
+    socket.on('join-room', (roomId, userId) => {
+        socket.join(roomId)
+        socket.to(roomId).broadcast.emit("user-connected", userId)
+    })
+})
+
 
 httpServer.listen({ port: process.env.PORT }, async () => {
     console.log('\n\n🚀  Server ready at http://localhost:' + process.env.PORT)
